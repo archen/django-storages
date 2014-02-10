@@ -8,7 +8,7 @@ from tempfile import SpooledTemporaryFile
 try:
     from cStringIO import StringIO
 except ImportError:
-    from StringIO import StringIO  # noqa
+    from io import StringIO  # noqa
 
 from django.core.files.base import File
 from django.core.files.storage import Storage
@@ -57,7 +57,7 @@ def safe_join(base, *paths):
     Paths outside the base path indicate a possible security
     sensitive operation.
     """
-    from urlparse import urljoin
+    from urllib.parse import urljoin
     base_path = force_unicode(base)
     base_path = base_path.rstrip('/')
     paths = [force_unicode(p) for p in paths]
